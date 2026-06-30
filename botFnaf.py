@@ -25,20 +25,36 @@ def moverMouse(posicao):
 
 def clicar(posicao):
     moverMouse(posicao)
+    time.sleep(0.3)
     pg.mouseDown()
     time.sleep(pausa)
     pg.mouseUp()
     
+def pegarcoord():
+    width, heigth = pg.size()
+    mx, my = pg.position()
+    posicaoX = mx/width
+    posicaoY = my/heigth
+    coord = posicaoX, posicaoY
+    return coord
+   
+def pegarCor(coord):
+    ft = pg.screenshot()
+    width, height = ft.size
+    x = int(coord[0] * width)
+    y = int(coord[1] * height)
+    pixel = ft.getpixel((x, y))
+    return pixel 
 
 def checarEsquerda():
-    moverMouse(coordenadas["luzEsquerda"])
+    clicar(coordenadas["luzEsquerda"])
     time.sleep(0.01)
-    moverMouse(coordenadas["luzEsquerda"])
+    clicar(coordenadas["luzEsquerda"])
 
 def checarDireita():
-    moverMouse(coordenadas["luzDireita"])
+    clicar(coordenadas["luzDireita"])
     time.sleep(0.01)
-    moverMouse(coordenadas["luzDireita"])
+    clicar(coordenadas["luzDireita"])
 
 def alternarCamera():
     moverMouse(coordenadas["cameraAcao"])
@@ -71,4 +87,6 @@ escutador = keyboard.Listener(on_press=pararBot)
 escutador.start()
 
 while rodando:
-    moverMouse(coordenadas["bonnieArrow"])
+    time.sleep(0.5)
+    cord = pegarcoord()
+    print(pegarCor(cord))

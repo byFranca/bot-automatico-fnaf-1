@@ -12,6 +12,8 @@ def pegarCoordenadas(tecla):
             posicaoY = y / height
 
             print(posicaoX, posicaoY)
+        elif tecla.char == "q":
+            escutarTecla.stop()
     except:
         pass
 
@@ -19,4 +21,4 @@ escutarTecla = keyboard.Listener(on_press=pegarCoordenadas)
 escutarTecla.start()
 escutarTecla.join()
 
-##digite ctrl + c para parar a execução do programa
+##digite ctrl + c ou "q" para parar a execução do programa
